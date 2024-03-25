@@ -1,0 +1,37 @@
+import win32com.client as win32
+
+# criar a integração com o outlook
+outlook = win32.Dispatch('outlook.application')
+
+# criar um email
+email = outlook.CreateItem(0)
+
+#Variáveis
+mes = input("Digite o mês referente ao contracheque")
+email_list =[]
+
+# Informações do email
+email.To = "destino; destino2"
+email.Subject = "Contracheque - "+mes +"de 2024"
+email.HTMLBody = f"""
+<p>Boa tarde, </p>
+
+<p>Encaminho, em anexo, contracheque de {mes} de 2024. </p>
+<p>Gentileza, acusar o recebimento. </p>
+
+
+
+
+<p>Atenciosamente, </p>
+<p>Divisão de Pagamento de Pessoal - DIPAG </p>
+<p>Tribunal Regional Federal da Primeira Região - TRF1 </p>
+<p>dipag@trf1.jus.br </p>
+
+
+"""
+
+ # anexo = "C://Users/joaop/Downloads/" não está pronto
+ # email.Attachments.Add(anexo) não está pronto
+
+email.Send()
+print("Email Enviado")
